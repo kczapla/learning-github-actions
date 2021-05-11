@@ -1,5 +1,6 @@
-FROM node:15.12-alpine as base
+ARG NODE_VERSION
 
+FROM node:${NODE_VERSION}-alpine as base
 WORKDIR /app
 
 FROM base as dependencies
@@ -11,7 +12,7 @@ RUN npm install
 FROM dependencies as tests
 RUN npm run style && npm run lint && npm run tests
 
-FROM base as prod
+FROM dependencies as prod
 COPY --from=dependencies /app/prod_node_modules ./node_modules
 COPY . .
 CMD ["npm", "run", "start"]

@@ -17,6 +17,9 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    strategy:
+      matrix:
+        node-version: [15.2, 16.1]
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -25,4 +28,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: style & lint & format
-        run: docker build --target tests . 
+        run: docker build --target tests --build-args NODE_VERSION=${{ matrix.node-version }} . 
+  
+
