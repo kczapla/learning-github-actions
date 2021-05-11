@@ -1,0 +1,29 @@
+{
+  "name": "learning-github-actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "lint": "eslint .",
+    "test": "jest --config jest.config.json src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kczapla/learning-github-actions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kczapla/learning-github-actions/issues"
+  },
+  "homepage": "https://github.com/kczapla/learning-github-actions#readme",
+  "dependencies": {
+    "chalk": "^4.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.3.0"
+  }
+}

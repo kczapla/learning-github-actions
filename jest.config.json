@@ -1,0 +1,4 @@
+{
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec|steps))\\.(jsx?|js?|mjs?|tsx?|ts?)$",
+    "testEnvironment": "node"
+}
