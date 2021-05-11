@@ -1,20 +1,17 @@
 FROM node:15.12-alpine as base
 
 WORKDIR /app
-COPY . .
-RUN npm ci
 
-FROM base as style
-RUN npx prettier --check .
-
-FROM base as lint
-RUN npx eslint .
-
-FROM base as tests
-RUN npx jest src/
-
-FROM node:15.12-alpine as prod
-
+FROM base as dependencies
 COPY . .
 RUN npm ci --production
+RUN cp -R node_modules prod_node_modules
+RUN npm install
+
+FROM dependencies as tests
+RUN npm run style && npm run lint && npm run tests
+
+FROM base as prod
+COPY --from=dependencies /app/prod_node_modules ./node_modules
+COPY . .
 CMD ["npm", "run", "start"]

@@ -24,9 +24,5 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: style
-        run: docker build --target style . 
-      - name: run lint
-        run: docker build --target lint .
-      - name: run unit tests
-        run: docker build --target test .
+      - name: style & lint & format
+        run: docker build --target tests . 
