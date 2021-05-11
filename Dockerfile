@@ -4,11 +4,14 @@ WORKDIR /app
 COPY . .
 RUN npm ci
 
+FROM base as style
+RUN npx prettier --check .
+
 FROM base as lint
-RUN npm run lint
+RUN npx eslint .
 
 FROM base as tests
-RUN npm run test
+RUN npx jest src/
 
 FROM node:15.12-alpine as prod
 
