@@ -1,3 +1,4 @@
+const x = require('./index')
 test("test", () => {
-    expect(true).toBeFalsy()
+    expect(x.ad()).toEqual(1)
 })
